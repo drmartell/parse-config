@@ -10,7 +10,7 @@ function getConfigParam(configFilePath, param) {
     if(line.startsWith('#')) continue;
 
     const splitLine = line.split((/=(.+)/)).map(string => string.trim());
-    if(splitLine.length === line.length) continue;
+    if(splitLine[0].length === line.length) continue;
 
     const [lineParam, lineValueString] = splitLine;
     if(lineParam === param) {
