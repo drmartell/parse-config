@@ -7,7 +7,8 @@ function getConfigParam(configFilePath, param) {
   const configLines = fs.readFileSync(configFilePath, 'utf-8').split('\n');
   for(let i = 0; i < configLines.length; ++i) {
     const line = configLines[i];
-    if(line.startsWith('#') || !(/[a-zA-Z]\w* *= *\S+/).test(line)) continue;
+    const validLineRegex = /[a-zA-Z]\w* *= *\S+/; // not entirely clear what a valid line would be, but this might describe it
+    if(line.startsWith('#') || !(validLineRegex).test(line)) continue;
 
     const splitLine = line.split(/=(.+)/, 2).map(string => string.trim());
 
