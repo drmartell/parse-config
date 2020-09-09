@@ -7,10 +7,9 @@ function getConfigParam(configFilePath, param) {
   const configLines = fs.readFileSync(configFilePath, 'utf-8').split('\n');
   for(let i = 0; i < configLines.length; ++i) {
     const line = configLines[i];
-    if(line.startsWith('#')) continue;
+    if(line.startsWith('#') || !(/[a-zA-Z]\w* *= *\S+/).test(line)) continue;
 
     const splitLine = line.split(/=(.+)/, 2).map(string => string.trim());
-    if(splitLine[0].length === line.length) continue;
 
     const [lineParam, lineValueString] = splitLine;
     if(lineParam === param) {
