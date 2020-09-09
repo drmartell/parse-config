@@ -9,7 +9,7 @@ function getConfigParam(configFilePath, param) {
     const line = configLines[i];
     if(line.startsWith('#')) continue;
 
-    const splitLine = line.split((/=(.+)/)).map(string => string.trim());
+    const splitLine = line.split(/=(.+)/, 2).map(string => string.trim());
     if(splitLine[0].length === line.length) continue;
 
     const [lineParam, lineValueString] = splitLine;
@@ -24,4 +24,6 @@ function getConfigParam(configFilePath, param) {
 }
 
 // call function as below:
+console.log(getConfigParam('./config.txt', 'server_id'));
+console.log(getConfigParam('./config.txt', 'debug_mode'));
 console.log(getConfigParam('./config.txt', 'log_file_path'));
